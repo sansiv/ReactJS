@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { useContext } from 'react';
 import { EmployeeContext } from './employee-context';
 import {useDispatch} from 'react-redux'
+import { employeeActions } from './store';
 
 const EmpForm= (props) => {
 
@@ -34,8 +35,9 @@ const EmpForm= (props) => {
         };
 
         //props.onNewEmpData(newEmpData)
-
-        dispatch({type: "ADD_EMPLOYEE", payload: newEmpData})
+        
+        //dispatch({type: "ADD_EMPLOYEE", payload: newEmpData})
+        dispatch(employeeActions.addEmployee(newEmpData))
 
         setInputName('')
         setInputExp('')
