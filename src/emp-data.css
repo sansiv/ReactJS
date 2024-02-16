@@ -1,3 +1,12 @@
+.data-holder{
+    background-color: rgb(110, 104, 104);
+    padding-top: 25px;
+    margin-left: 160px;
+    margin-right: 160px;
+    border-radius: 20px;
+    padding-bottom: 30px;
+}
+
 .emp-data{
     display: flex;
     flex-direction: column;
@@ -26,9 +35,9 @@
 }
 
 .emp-dob{
-    margin-left: 30px;
+    margin-left: 80px;
 }
 
 .emp-exp{
-    margin-left: 30px;
+    margin-left: 10px;
 }

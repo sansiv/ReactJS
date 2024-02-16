@@ -1,19 +1,34 @@
 import EmpData from "./emp-data";
-const employees= [
-    {id: "e1", name: "Sangeeth Sivan", DOB: new Date(2001, 11, 1), exp: '4 Years'},
-    {id: "e2", name: "Sindhu Sivan", DOB: new Date(1974, 4, 128), exp: '8 Years'},
-    {id: "e3", name: "Sivan Venga", DOB: new Date(1968, 5, 27), exp: '12 Years'},
-    {id: "e4", name: "Harikrishnan", DOB: new Date(2001, 10, 17), exp: '3 Years'}
-]
+import EmpFilter from "./emp-filter";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { EmployeeContext } from "./employee-context";
 
-function EmpDet(){
+
+function EmpDet(props){
+
+    const data= useSelector(state => state.data)
+
+    console.log(data)
+    const [filteredExp, setFilteredExp]= useState('9')
+
+    //const data= props.data  
+
+    const filterChangeHandler = selectedExp => {
+        setFilteredExp(selectedExp);
+    }
+
+    const filteredData = data.filter(data => {
+        return data.exp === filteredExp;
+    });
+
+    console.log(filteredData)
     return(
-        <div>
-        <h1> MY EMPLOYEE DETAILS </h1>   
-        <EmpData name={employees[0].name} DOB={employees[0].DOB} exp={employees[0].exp}></EmpData>
-        <EmpData name={employees[1].name} DOB={employees[1].DOB} exp={employees[1].exp}></EmpData>
-        <EmpData name={employees[2].name} DOB={employees[2].DOB} exp={employees[2].exp}></EmpData>
-        <EmpData name={employees[3].name} DOB={employees[3].DOB} exp={employees[3].exp}></EmpData>
+        <div className="data-holder"> 
+            <EmpFilter selected={filteredExp} onChangeFilter={filterChangeHandler}> </EmpFilter>
+            {
+            filteredData.map((empData) => (<EmpData key={empData.id} name={empData.name} exp={empData.exp +' Years'} DOB={empData.DOB}></EmpData>))
+            }
         </div>
         
     )
